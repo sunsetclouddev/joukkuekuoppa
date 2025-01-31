@@ -1,0 +1,22 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "exclude": ["src/**/__tests__/*"],
+  "compilerOptions": {
+
+    // define composite as false to avoid "is not under 'rootDir'" and "is not listed within the file list of project" for imports from common
+    "composite": false,
+
+    // commented out due to composite being false
+    // "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+
+    // @todo: consider using moduleResolution 'bundler', when environment supports it
+    "module": "es2022",
+    "moduleResolution": "node16",
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

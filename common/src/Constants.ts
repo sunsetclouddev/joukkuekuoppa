@@ -1,0 +1,12 @@
+export const unspecified: number = -1;
+export const suits: number = 4;
+export const valuesPerSuit: number = 13;
+export const suitedDeckSize: number = suits * valuesPerSuit;
+export const jokers: number = 2;
+export const deckSize: number = suitedDeckSize + jokers;
+export const redJokerIndex: number = 52;
+export const blackJokerIndex: number = 53;
+export const players: number = 6;
+export const team1Indices: number[] = [0, 2, 4];
+export const team2Indices: number[] = [1, 3, 5];
+export const scoreToWin: number = 25;

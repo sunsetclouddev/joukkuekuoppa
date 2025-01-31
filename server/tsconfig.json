@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+
+    // @todo: should maybe use target: es2022, module: es2022, moduleResolution: node16
+    // however, jest currently only has experimental support for ECMAScript Modules
+
+    "target": "es2016",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+  }
+}

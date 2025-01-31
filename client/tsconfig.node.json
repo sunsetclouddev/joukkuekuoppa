@@ -1,0 +1,21 @@
+{
+  "extends": "@tsconfig/node20/tsconfig.json",
+  "include": [
+    "vite.config.*",
+    "vitest.config.*",
+    "cypress.config.*",
+    "nightwatch.conf.*",
+    "playwright.config.*"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+
+    // @todo: consider using moduleResolution 'bundler', when environment supports it
+    "module": "es2022",
+    "moduleResolution": "node16",
+
+    "types": ["node"]
+  }
+}

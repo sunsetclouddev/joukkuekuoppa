@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+
+    // @todo: should maybe use target: es2022, module: es2022, moduleResolution: node16
+    // however, jest currently only has experimental support for ECMAScript Modules
+
+    "target": "es2016",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true
+  },
+
+  // @note: This include is a workaround for VSCode editor, which
+  // does not find the correct types in test files by default.
+  "include": [ "tests/*.ts" ]
+}
