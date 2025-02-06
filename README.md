@@ -7,6 +7,7 @@
 
 ## Version History
 
+* 1.0.1 (Feb 2025): Improved lower resolution layout scaling and fixed a logic issue with handovers.
 * 1.0.0 (Jan 2025): Initial version.
 
 ## About
@@ -89,7 +90,6 @@ Additionally, there are several files for node/npm package configuration, TypeSc
 
 ## Known Issues / Future Work
 
-* Layout scaling does not work nicely in the central play area, causing issues when running with lower resolutions.
 * Player names should be configurable and shown more clearly, e.g. during handovers.
 * Hovering over various UI elements could give additional information, e.g. who has played the last group.
 * AI players should utilize more strategic thinking.
