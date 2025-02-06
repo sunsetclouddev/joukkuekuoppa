@@ -263,7 +263,7 @@ export function GiveHandoverCard(gameState: GameState, playerID: number, card: C
   if (handoverCard.IsSpecified())
     return false;
 
-  if (isPhase1 && !Rules.IsValidHandover(card, gameState.players[playerID].hand))
+  if (!Rules.IsValidHandover(card, gameState.players[playerID].hand, isPhase1))
     return false;
 
   // remove from player hand

@@ -130,8 +130,13 @@ test('IsValidToPass', () =>
 
 test('IsValidHandover', () =>
 {
-  expect(Rules.IsValidHandover(StringToCard('d7'), [StringToCard('d7')])).toBe(true);
-  expect(Rules.IsValidHandover(StringToCard('d7'), [StringToCard('d8')])).toBe(false);
+  // must exist in hand
+  expect(Rules.IsValidHandover(StringToCard('d7'), [StringToCard('d7')], /*isPhase1*/false)).toBe(true);
+  expect(Rules.IsValidHandover(StringToCard('d7'), [StringToCard('d8')], /*isPhase1*/false)).toBe(false);
+
+  // in phase1 must be one of the highest value cards in hand
+  expect(Rules.IsValidHandover(StringToCard('d7'), [StringToCard('d7'), StringToCard('d8')], /*isPhase1*/true)).toBe(false);
+  expect(Rules.IsValidHandover(StringToCard('d8'), [StringToCard('d7'), StringToCard('d8')], /*isPhase1*/true)).toBe(true);
 });
 
 test('CalculateRoundScore', () =>

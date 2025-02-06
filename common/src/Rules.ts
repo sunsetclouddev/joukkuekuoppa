@@ -198,13 +198,15 @@ export function IsValidToPass(playedCards: Card[][]): boolean
   return (playedCards.length > 0);
 }
 
-export function IsValidHandover(card: Card, hand: Card[]): boolean
+export function IsValidHandover(card: Card, hand: Card[], isPhase1: boolean): boolean
 {
+  // @note: in phase1, only one of the highest value cards in hand can be given, whereas in phase 2, any card in hand can be given
+
   // card must exist in hand
   if (hand.find((handCard) => { return Card.AreSame(card, handCard); }) === undefined)
     return false;
 
-  return GetComparisonValue(card) >= GetHighestComparisonValue(hand, CompareAs.Individual);
+  return (!isPhase1 || (GetComparisonValue(card) >= GetHighestComparisonValue(hand, CompareAs.Individual)));
 }
 
 export function CalculateRoundScore(placementNumbers: number[]): number

@@ -246,7 +246,7 @@ test('GiveHandoverCard', () =>
   expect(gameState.handoverCard1.IsSpecified()).toBe(true);
   expect(gameState.handoverCard2.IsSpecified()).toBe(true);
 
-  // not giving best card
+  // not giving best card in phase 1
   gameState.roundPhase = RoundPhase.HandoverPhase1Give;
   gameState.players[4].hand = [joker1Card, joker2Card];
   gameState.handoverCard1 = new Card();
@@ -254,6 +254,14 @@ test('GiveHandoverCard', () =>
   result = Actions.GiveHandoverCard(gameState, 4, joker2Card);
   expect(result).toBe(false);
   result = Actions.GiveHandoverCard(gameState, 4, joker1Card);
+  expect(result).toBe(true);
+
+  // not giving best card in phase 2
+  gameState.roundPhase = RoundPhase.HandoverPhase2Give;
+  gameState.players[0].hand = [joker1Card, joker2Card];
+  gameState.handoverCard1 = new Card();
+  gameState.handoverCard2 = new Card();
+  result = Actions.GiveHandoverCard(gameState, 0, joker2Card);
   expect(result).toBe(true);
 });
 

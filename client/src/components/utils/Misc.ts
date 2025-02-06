@@ -96,10 +96,15 @@ export function IsPassEnabled(gameStateRef: Ref<GameState>, playerID: number): b
 
 export function IsGiveEnabled(gameStateRef: Ref<GameState>, aboutToPlayRef: Ref<Card[]>): boolean
 {
-  // @note: in phase1, only valid handover card can be given, in phase 2, any card can be given
-  return ((aboutToPlayRef.value.length === 1) &&
-    ((gameStateRef.value.roundPhase === RoundPhase.HandoverPhase2Give) ||
-      Rules.IsValidHandover(aboutToPlayRef.value[0], gameStateRef.value.players[0].hand)));
+  if (aboutToPlayRef.value.length !== 1)
+    return false;
+
+  // in client, the player hand consists of cards in the game state player hand array plus the cards in the about-to-play area
+  const card = aboutToPlayRef.value[0];
+  const hand = gameStateRef.value.players[0].hand.concat(card);
+  const isPhase1 = (gameStateRef.value.roundPhase === RoundPhase.HandoverPhase1Give);
+
+  return Rules.IsValidHandover(card, hand, isPhase1);
 }
 
 export function IsDealerActionNeeded(gameStateRef: Ref<GameState>, playerID: number): boolean
