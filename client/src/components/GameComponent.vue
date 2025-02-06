@@ -126,7 +126,7 @@ const allNonWildCards = Misc.CreateAllNonWildCards();
   <ModalComponent :isOpen='WildCardSelectionIsModalOpened' @modal-close='WildCardSelectionCloseModal' name='wild card selection screen'>
     <template #content>
       <p>Select actual card for the wild card:</p>
-      <br /><br />
+      <br />
       <div v-for='(n, wildcardindex) in 4'>
         <ul class='cards wildcardselection'>
           <li class='cards wildcardselection' v-for='card in allNonWildCards[wildcardindex]'>
@@ -269,8 +269,7 @@ const allNonWildCards = Misc.CreateAllNonWildCards();
           </draggable>
         </div>
         <div class='playerbuttons'>
-          <div v-if='gameStateRef.players.length >= 6'> {{ Misc.ShowStatusAsString(refs.gameState, playerID, 0) }} </div>
-          <br />
+          <div v-if='gameStateRef.players.length >= 6' class='playerstatus'> {{ Misc.ShowStatusAsString(refs.gameState, playerID, 0) }} </div>
           <div v-if='Misc.IsDealerActionNeeded(refs.gameState, playerID)'>
             <div class='playerbutton'><button class='effects v1' @click='serverCalls.DealCards()'>deal</button></div>
           </div>
@@ -320,11 +319,11 @@ const allNonWildCards = Misc.CreateAllNonWildCards();
 
 .content { width: 100vw; height: 100vh; display: flex; flex: 1 1 0; flex-direction: column; }
 
-.logo { position: absolute; margin: 20px 50px; font-family: "base font"; font-size: 50px; }
+.logo { position: absolute; margin: 2cqh 4cqw; font-family: "base font"; font-size: min(4cqw, 50px); }
 
 .overlay { position: absolute; }
 
-.scoreboardbutton { position: fixed; right: 60px; margin: 20px; }
+.scoreboardbutton { position: fixed; right: 60px; margin: 2cqh 20px; }
 button.scoreboard { padding: 5px 10px; }
 
 table.scoreboard { border-spacing: 0; }
@@ -333,7 +332,7 @@ table.scoreboard > tbody > tr > th { padding: 4px; color: white; background-colo
 table.scoreboard > tbody > tr > td { text-align: center; padding: 10px; }
 table.scoreboard > tbody > tr > td.withborder { border-left: solid 1px; border-right: solid 1px; }
 
-.infobutton { position: fixed; right: 0; margin: 20px; }
+.infobutton { position: fixed; right: 0; margin: 2cqh 20px; }
 button.info { padding: 5px 10px; }
 
 .otherportion
@@ -345,7 +344,7 @@ button.info { padding: 5px 10px; }
 .allotherhands
 {
   display: inline-block; width: auto; height: 100%; aspect-ratio: 1.5/1;
-  background-image: url('@/assets/gfx/feltsemicircle.svg'); background-size: 100% 100%; container-type: size;
+  background-image: url('@/assets/gfx/feltsemicircle.svg'); background-size: 100% 100%;
 }
 
 .playerportion
@@ -369,7 +368,7 @@ button.info { padding: 5px 10px; }
   border-style: dotted; padding: 0px 0px; color: #222222; z-index: -1;
 }
 
-.wildcardquestion { position: absolute; top: 35%; padding: 5px 10px; }
+.wildcardquestion { width: auto; height: 35%; max-height: 100%; aspect-ratio: 3/4; position: absolute; top: 35%; padding: 0.1cqh 0.5cqw; }
 
 .playerbuttons { flex: 0.2; }
 .playerbutton { display: inline-block; }
@@ -378,18 +377,23 @@ button.effects { font-family: "base font"; margin: 5px; border: none; color: whi
 button.effects:disabled { opacity: 0.3; }
 button.effects:hover:enabled { box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.9); }
 
-button.effects.v1 { font-size: 30px; padding: 10px 20px; border-radius: 50%; background-color: #00AA00; }
+button.effects.v1 { font-size: min(2cqw, 30px); margin: 2cqh 5px; padding: min(1cqw, 10px) min(1.3cqw, 20px); border-radius: 50%; background-color: #00AA00; }
 button.effects.v1:active:enabled { background-color: #004400; }
 
-button.effects.v2 { font-size: 20px; padding: 5px 10px; border-radius: 10%; background-color: #DD9900; }
+button.effects.v2 { font-size: min(2cqw, 20px); padding: 5px 10px; border-radius: 10%; background-color: #DD9900; }
 button.effects.v2:active:enabled { background-color: #AA6600; }
 
-button.effects.v3 { font-size: 20px; padding: 5px 10px; border-radius: 10%; background-color: #7777FF; }
+button.effects.v3 { font-size: min(2cqw, 20px); padding: 5px 10px; border-radius: 10%; background-color: #7777FF; }
 button.effects.v3:active:enabled { background-color: #4444CC; }
+
+.playerstatus { display: inline-block; }
 
 .playerinfo { display: inline-block; margin: 10px; }
 
 .hidden-ghost { opacity: 10%; }
+.hidden-ghost > .selectedwildcard { opacity: 0%; }
+.hidden-ghost > .wildcardquestion { opacity: 0%; }
+
 .chosen { filter: drop-shadow(0px 0px 20px black); }
 
 .usermessage { position: fixed; top: 35%; left: 50%; transform: translate(-50%, -50%); font-size: 30px; }
@@ -398,28 +402,28 @@ ul.cards { display: inline-block; background-color: #00553D; list-style-type: no
 
 ul.cards.playedcards
 {
-  position: fixed; top: 35%; left: 50%; transform: translate(-50%, -50%);
-  background-color: transparent; width: auto; height: 6.0rem; aspect-ratio: 8/1;
+  position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%);
+  background-color: transparent; width: auto; height: 11%; aspect-ratio: 8/1;
 }
 
 ul.otherhands
 {
-  display: inline-block; position: absolute; top: 42%; left: 45%;
-  background-color: transparent; width: auto; height: 4.0rem; aspect-ratio: 3/1;
+  position: fixed; top: 42%; left: 50%;
+  background-color: transparent; width: auto; height: 7.5%; aspect-ratio: 3/1;
 }
 
-ul.otherhands.h1 { transform: rotate(90deg) translate(0, 40cqw); }
-ul.otherhands.h2 { transform: rotate(135deg) translate(0, 40cqw); }
-ul.otherhands.h3 { transform: rotate(180deg) translate(0, 40cqw); }
-ul.otherhands.h4 { transform: rotate(225deg) translate(0, 40cqw); }
-ul.otherhands.h5 { transform: rotate(270deg) translate(0, 40cqw); }
+ul.otherhands.h1 { transform-origin: center; transform: translate(-50%, 0) rotate(90deg) translate(0, 36cqh); }
+ul.otherhands.h2 { transform-origin: center; transform: translate(-50%, 0) rotate(135deg) translate(0, 36cqh); }
+ul.otherhands.h3 { transform-origin: center; transform: translate(-50%, 0) rotate(180deg) translate(0, 36cqh); }
+ul.otherhands.h4 { transform-origin: center; transform: translate(-50%, 0) rotate(225deg) translate(0, 36cqh); }
+ul.otherhands.h5 { transform-origin: center; transform: translate(-50%, 0) rotate(270deg) translate(0, 36cqh); }
 
-.otherhandsstatus { display: inline-block; position: absolute; top: 42%; left: 48%; }
-.otherhandsstatus.h1 { text-align: center; transform: rotate(-90deg) translate(0, -30cqw); }
-.otherhandsstatus.h2 { text-align: center; transform: rotate(-45deg) translate(0, -30cqw); }
-.otherhandsstatus.h3 { text-align: center; transform: rotate(0deg) translate(0, -30cqw); }
-.otherhandsstatus.h4 { text-align: center; transform: rotate(45deg) translate(0, -30cqw); }
-.otherhandsstatus.h5 { text-align: center; transform: rotate(90deg) translate(0, -30cqw); }
+.otherhandsstatus { position: fixed; top: 44%; left: 50%; }
+.otherhandsstatus.h1 { text-align: center; transform-origin: center; transform: translate(-50%, 0) rotate(-90deg) translate(0, -28cqh); }
+.otherhandsstatus.h2 { text-align: center; transform-origin: center; transform: translate(-50%, 0) rotate(-45deg) translate(0, -28cqh); }
+.otherhandsstatus.h3 { text-align: center; transform-origin: center; transform: translate(-50%, 0) rotate(0deg) translate(0, -28cqh); }
+.otherhandsstatus.h4 { text-align: center; transform-origin: center; transform: translate(-50%, 0) rotate(45deg) translate(0, -28cqh); }
+.otherhandsstatus.h5 { text-align: center; transform-origin: center; transform: translate(-50%, 0) rotate(90deg) translate(0, -28cqh); }
 
 ul.abouttoplay { width: auto; height: 100%; max-width: 90%; aspect-ratio: 8/1; }
 ul.playerhand { width: auto; height: 100%; max-width: 90%; aspect-ratio: 8/1; }
@@ -437,7 +441,7 @@ li.wildcardselection.wildcardselection { margin: -1%; }
 li.handover { width: 25%; margin: 5%; }
 
 .card { width: 100%; height: auto; max-height: 100%; aspect-ratio: 3/4; }
-.card.selectedwildcard { width: 2.0rem; height: 3.0rem; position: absolute; top: 25%; padding: 5px 5px; }
+.card.selectedwildcard { width: auto; height: 50%; max-height: 100%; aspect-ratio: 3/4; position: absolute; top: 22%; padding: 0.5cqh 0.5cqw; }
 
 .card .face { width: 100%; height: 100%; background-size: 100% 100%; }
 

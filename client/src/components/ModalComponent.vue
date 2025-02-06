@@ -24,7 +24,7 @@ const emit = defineEmits(['modal-close']);
 
 .modal-container
 {
-  width: 650px; margin: 150px auto; padding: 20px 20px; background-color: rgba(255, 255, 255, 1.0); border-radius: 2px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  width: 650px; margin: 18cqh auto; padding: 20px 20px; background-color: rgba(255, 255, 255, 1.0); border-radius: 2px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .close { color: rgba(200, 200, 200, 1.0); float: right; font-size: 28px; font-weight: bold; }
